@@ -41,7 +41,7 @@ public class App {
             splitInput = input.split("/");
         }
 
-        if (splitInput.length != 2 || splitInput[0] == null || splitInput[1] == null){
+        if (splitInput.length != 2 || splitInput[0] == null || splitInput[1] == null) {
             throw new RuntimeException("\"Введено не корректное значение\"");
         }
 
@@ -72,7 +72,7 @@ public class App {
         if (!dataType) {
             try {
                 output = getRomanNumber(answer);
-            }catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException ex) {
                 System.out.println("В римской системе нет отрицательных чисел");
                 System.exit(0);
             }
@@ -115,7 +115,10 @@ public class App {
             case 1 -> answer = first + second;
             case 2 -> answer = first - second;
             case 3 -> answer = first * second;
-            case 4 -> answer = first / second;
+            case 4 -> {
+                if (second == 0) throw new ArithmeticException("Делить на ноль нельзя");
+                answer = first / second;
+            }
             default -> {
                 System.out.println("some error");
                 answer = -1;
